@@ -1,0 +1,29 @@
+<% flash.each do |message_type, message| %>
+   <%= content_tag :div, message, class: message_type %>
+   <% end %>
+<div class="container px-5 px-sm-0">
+<div class="row">
+<%= render 'user_info', user: @user %>
+<div class="col-md-8 offset-md-1">
+<table class="table table-hover table-inverse">
+<tr>
+<h2>Books</h2>
+<th></th>
+<th>Title</th>
+ <th>Opnion</th>
+ <th></th>
+ <th></th>
+ </tr>
+<% @books.each do |book| %>
+<% if book.user_id == @user.id %>
+<tr>
+  <td><%= link_to image_tag(@user.get_profile_image(100,100)), user_path(@user.id) %></td>
+  <td><%= link_to book.title,  book_path(book.id) %></td>
+  <td><%= book.body %></td>
+</tr>
+  <% end %>
+ <% end %>
+ </table>
+ </div>
+ </div>
+</div>

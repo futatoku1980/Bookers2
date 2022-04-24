@@ -1,0 +1,52 @@
+<div class="col-md-3">
+ <% if @book.errors.any? %>
+ <%= @book.errors.count %>errors
+ <ul>
+  <% @book.errors.full_messages.each do |message| %>
+   <li><%= message %></li>
+   <% end %>
+ </ul>
+ <% end %>
+  <h2>User info</h2>
+ <table class="table">
+
+<% if @user.profile_image.attached? %>
+ <%= image_tag @user.profile_image, size: "100x100" %>
+<% else %>
+ <%= image_tag 'no_image.jpg', size: '100x100' %>
+<% end %>
+
+<tr>
+
+<th><p>name </th><th><%= @user.name %></p> </th>
+</tr>
+<tr>
+<th>
+<p>Introduction</th><th><%= @user.introduction %></p></th>
+</tr></table>
+<div class="row">
+ <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block" do %>
+  <i class="fas fa-user-cog"></i>
+  <% end %>
+</div>
+
+
+<h1>New book</h1>
+
+
+
+<%= form_with model: @book, local:true do |f| %>
+ <div class="form-group">
+  <label for="book_title">Title</label>
+  <%= f.text_field :title,class: "form-control book_title" %>
+ </div>
+ <div class="form-group">
+  <label for="book_opinion">Opinion</label>
+   <%= f.text_area :body, class: "form-control book_body" %>
+ </div>
+<div class="form-group">
+    <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+  </div>
+
+<% end %>
+</div>
